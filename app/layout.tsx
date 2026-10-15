@@ -1,14 +1,17 @@
 import './globals.css';
 import { Prompt } from 'next/font/google';
+import AppShell from '@/components/AppShell';
 
-const font = Prompt({ subsets: ['thai', 'latin'], weight: ['400', '600'] });
+const font = Prompt({ subsets: ['thai', 'latin'], weight: ['400', '500', '600'] });
 
-export const metadata = { title: 'แดชบอร์ดห้องเรียน 3D' };
+export const metadata = { title: 'ระบบสารสนเทศโรงเรียน' };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="th">
-      <body className={font.className}>{children}</body>
+      <body className={font.className}>
+        <AppShell>{children}</AppShell>
+      </body>
     </html>
   );
 }
