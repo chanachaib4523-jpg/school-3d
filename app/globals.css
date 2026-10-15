@@ -1,0 +1,38 @@
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; background: #f1f5f9; color: #0f172a; }
+.center { min-height: 100vh; display: grid; place-items: center; }
+.card { background: #fff; border-radius: 16px; padding: 24px; box-shadow: 0 10px 30px #0001; }
+.login { display: flex; flex-direction: column; gap: 12px; width: 320px; }
+input, select { font: inherit; padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 10px; background: #fff; }
+.btn { font: inherit; display: inline-block; text-align: center; text-decoration: none; background: #2563eb; color: #fff; border: 0; border-radius: 10px; padding: 10px 16px; cursor: pointer; }
+.err { color: #dc2626; margin: 0; }
+.row { display: flex; gap: 8px; align-items: center; justify-content: space-between; flex-wrap: wrap; margin: 8px 0; }
+
+/* แดชบอร์ด */
+.dash { display: grid; grid-template-columns: 1fr 340px; height: 100vh; }
+.stage { position: relative; }
+.panel { background: #fff; padding: 20px; overflow-y: auto; border-left: 1px solid #e2e8f0; }
+.panel h1 { margin: 0 0 8px; font-size: 22px; }
+.big { font-size: 44px; font-weight: 600; margin-top: 12px; }
+.big small { font-size: 16px; color: #64748b; }
+.bar { height: 10px; background: #e2e8f0; border-radius: 99px; overflow: hidden; margin: 8px 0 16px; }
+.bar div { height: 100%; background: #22c55e; transition: width .5s; }
+.stats, .names { list-style: none; padding: 0; margin: 0 0 16px; }
+.stats li { display: flex; align-items: center; gap: 8px; padding: 6px 0; border-bottom: 1px dashed #e2e8f0; }
+.stats b { margin-left: auto; }
+.names li { display: flex; align-items: center; gap: 8px; padding: 4px 0; font-size: 14px; }
+.dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.live { color: #16a34a; font-size: 13px; }
+.kid-label { background: #fff; border: 2px solid; border-radius: 999px; padding: 1px 8px; font-size: 12px; white-space: nowrap; pointer-events: none; }
+.zone-label { background: #0f172acc; color: #fff; padding: 4px 10px; border-radius: 8px; font-size: 13px; white-space: nowrap; pointer-events: none; }
+
+/* หน้าเช็คชื่อ */
+.checkin { max-width: 760px; margin: 0 auto; padding: 16px; }
+.checkin header { display: flex; justify-content: space-between; align-items: center; }
+.stu { background: #fff; border-radius: 12px; padding: 10px 12px; margin: 8px 0; display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; }
+.btns { display: flex; gap: 4px; flex-wrap: wrap; }
+.btns button { font: inherit; font-size: 13px; padding: 6px 10px; border: 1px solid #cbd5e1; border-radius: 8px; background: #fff; cursor: pointer; }
+
+@media (max-width: 900px) {
+  .dash { grid-template-columns: 1fr; grid-template-rows: 60vh auto; height: auto; }
+}
