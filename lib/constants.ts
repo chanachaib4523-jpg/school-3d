@@ -1,5 +1,5 @@
 // แก้เป็นชื่อโรงเรียนจริง (ใช้ในหัวรายงาน)
-export const SCHOOL_NAME = 'โรงเรียนของฉัน';
+export const SCHOOL_NAME = 'โรงเรียนบ้านเขาตาอิ๋น';
 
 export const STATUSES = ['มาเรียน', 'มาสาย', 'ลา', 'ป่วย', 'ขาดเรียน'] as const;
 export type Status = (typeof STATUSES)[number];
@@ -78,3 +78,37 @@ export function bmi(weight?: number | null, height?: number | null) {
   const m = height / 100;
   return Math.round((weight / (m * m)) * 10) / 10;
 }
+// ===== ส่วนเพิ่มสำหรับหน้าแรก 3D และหน้าพิมพ์รายงาน =====
+
+// ชื่อผู้อำนวยการ ใช้ในช่องลงชื่อท้ายรายงาน (ปล่อยว่าง '' จะเป็นจุดไข่ปลาให้เขียนเอง)
+export const DIRECTOR_NAME = '';
+
+// สีประจำห้อง (เรียงตามลำดับห้อง)
+export const ROOM_COLORS = [
+  '#f87171', '#fb923c', '#facc15', '#4ade80', '#2dd4bf',
+  '#38bdf8', '#818cf8', '#c084fc', '#f472b6',
+];
+
+/** ป.1 → ประถมศึกษาปีที่ 1, อ.2 → อนุบาล 2, ม.1 → มัธยมศึกษาปีที่ 1 */
+export function classFullName(c: string) {
+  let m = c.match(/^ป\.?\s*(\d+)(.*)$/);
+  if (m) return `ประถมศึกษาปีที่ ${m[1]}${m[2]}`;
+  m = c.match(/^อ\.?\s*(\d+)(.*)$/);
+  if (m) return `อนุบาล ${m[1]}${m[2]}`;
+  m = c.match(/^ม\.?\s*(\d+)(.*)$/);
+  if (m) return `มัธยมศึกษาปีที่ ${m[1]}${m[2]}`;
+  return c;
+}
+
+export function classLevel(c: string) {
+  if (/^(อ\.|อนุบาล)/.test(c)) return 'อนุบาล';
+  if (/^(ป\.|ประถม)/.test(c)) return 'ประถมศึกษา';
+  if (/^(ม\.|มัธยม)/.test(c)) return 'มัธยมศึกษา';
+  return 'อื่นๆ';
+}
+
+const LEVEL_ORDER = ['อนุบาล', 'ประถมศึกษา', 'มัธยมศึกษา', 'อื่นๆ'];
+
+/** เรียงห้อง: อนุบาล → ประถม → มัธยม แล้วเรียงตามชื่อ */
+export const compareClass = (a: string, b: string) =>
+  LEVEL_ORDER.indexOf(classLevel(a)) - LEVEL_ORDER.indexOf(classLevel(b)) || sortThai(a, b);

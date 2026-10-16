@@ -335,7 +335,7 @@ export default function Classroom3D({
           />
         ) : null
       )}
-      <OrbitControls target={[4, 0, 0]} maxPolarAngle={Math.PI / 2.2} minDistance={6} maxDistance={40} />
+      <OrbitControls enableRotate={false} enablePan={false} enableZoom={false} />
     </Canvas>
   );
 }
