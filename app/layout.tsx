@@ -1,4 +1,5 @@
 import './globals.css';
+import './pages.css';
 import { Prompt } from 'next/font/google';
 import AppShell from '@/components/AppShell';
 

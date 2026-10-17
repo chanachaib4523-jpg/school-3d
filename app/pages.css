@@ -1,0 +1,229 @@
+/* สไตล์หน้าทั่วไป (ไม่รวมหน้าแรกและหน้า 3D)
+   ลบไฟล์นี้ + บรรทัด import ใน layout.tsx = กลับเป็นเหมือนเดิม */
+
+.main-page {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 28px 24px 64px;
+  box-sizing: border-box;
+}
+.main-page > * + * { margin-top: 16px; }
+
+/* ----- หัวเรื่อง / คำอธิบาย / วันที่ ----- */
+.main-page h1 { margin: 0; font-size: 28px; line-height: 1.25; color: #2e1065; }
+.main-page h1 + p { margin: 4px 0 0; font-size: 15px; color: #6b7280; }
+.main-page h1 + p + p { margin: 2px 0 0; font-size: 13px; color: #7c3aed; }
+
+/* ----- ช่องกรอก / ตัวเลือก ----- */
+.main-page input:not([type='checkbox']):not([type='radio']),
+.main-page select {
+  font: inherit;
+  font-size: 15px;
+  color: #1f1b3a;
+  background: #fff;
+  border: 1px solid #ddd6fe;
+  border-radius: 10px;
+  padding: 9px 12px;
+  min-width: 0;
+  box-sizing: border-box;
+}
+.main-page input:focus,
+.main-page select:focus {
+  outline: none;
+  border-color: #8b5cf6;
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.18);
+}
+.main-page label:has(> input:not([type='checkbox']):not([type='radio'])),
+.main-page label:has(> select) {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+  color: #6b7280;
+}
+
+/* ----- ปุ่ม ----- */
+.main-page .btn {
+  background: #7c3aed;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 10px 18px;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.05s;
+}
+.main-page .btn:hover { background: #6d28d9; }
+.main-page .btn:active { transform: translateY(1px); }
+.main-page .btn:disabled { opacity: 0.55; cursor: not-allowed; }
+
+/* ปุ่มในตาราง (แก้ไข / ลบ) */
+.main-page td .btn { padding: 6px 12px; font-size: 13px; border-radius: 9px; }
+.main-page td .btn + .btn { background: #fff1f2; color: #e11d48; }
+.main-page td .btn + .btn:hover { background: #ffe4e6; }
+
+/* ปุ่มที่ยังไม่มีสไตล์ (เช่น แท็บดื่มนม / อาหารกลางวัน) */
+.main-page button:not([class]) {
+  font: inherit;
+  font-size: 14px;
+  padding: 7px 16px;
+  border: 1px solid #ddd6fe;
+  border-radius: 999px;
+  background: #fff;
+  color: #6d28d9;
+  cursor: pointer;
+}
+.main-page button:not([class]):hover { background: #f5f3ff; }
+
+/* ----- ตาราง (ยกเว้นหน้าพิมพ์รายงาน) ----- */
+.main-page:not(.page-report) table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 15px;
+}
+.main-page:not(.page-report) th {
+  text-align: left;
+  padding: 10px 12px;
+  background: #f5f3ff;
+  color: #4c1d95;
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.main-page:not(.page-report) th:first-child { border-radius: 10px 0 0 10px; }
+.main-page:not(.page-report) th:last-child { border-radius: 0 10px 10px 0; }
+.main-page:not(.page-report) td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #f1ecff;
+  vertical-align: middle;
+}
+.main-page:not(.page-report) tbody tr:hover td { background: #faf8ff; }
+.main-page:not(.page-report) td input {
+  width: 100%;
+  min-width: 80px;
+  max-width: 150px;
+  padding: 7px 10px;
+}
+
+/* ----- มือถือ ----- */
+@media (max-width: 640px) {
+  .main-page { padding: 18px 12px 48px; }
+  .main-page h1 { font-size: 23px; }
+}
+
+/* ----- ตอนพิมพ์ ซ่อนเมนูบนและเอาขอบออก ----- */
+@media print {
+  .topnav { display: none !important; }
+  .main-page { max-width: none; padding: 0; margin: 0; }
+}
+
+/* ----- แท็บเลือกประเภท (ดื่มนม / อาหารกลางวัน) ----- */
+.main-page .tabs {
+  display: inline-flex;
+  gap: 4px;
+  padding: 4px;
+  margin-bottom: 8px;
+  background: #f5f3ff;
+  border-radius: 999px;
+}
+.main-page .tabs button {
+  font: inherit;
+  font-size: 14px;
+  padding: 7px 20px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: #6d28d9;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, box-shadow 0.15s;
+}
+.main-page .tabs button:hover { background: #ede9fe; }
+.main-page .tabs button.active {
+  background: #7c3aed;
+  color: #fff;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+}
+
+/* ----- หน้าดูนักเรียนรายบุคคล ----- */
+.page-student .page > * + * { margin-top: 16px; }
+.page-student .card.row { justify-content: flex-start; gap: 20px; }
+.main-page .field select,
+.main-page .field input { min-width: 200px; }
+
+.main-page .muted { margin: 0; font-size: 14px; color: #6b7280; }
+.main-page .card-title { margin: 0 0 12px; font-size: 16px; color: #4c1d95; }
+.main-page .profile h2 { margin: 0 0 4px; font-size: 22px; color: #2e1065; }
+
+/* การ์ดตัวเลขสรุป (สีขอบซ้ายมาจากโค้ดหน้า) */
+.main-page .stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+.main-page .stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 12px 16px;
+  font-size: 13px;
+  color: #6b7280;
+  background: #fff;
+  border-style: solid;
+  border-width: 0 0 0 5px;
+  border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(76, 29, 149, 0.06);
+}
+.main-page .stat b { font-size: 26px; line-height: 1.15; color: #1e1b4b; }
+.main-page .stat small { font-size: 12px; color: #059669; }
+
+.main-page .two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+@media (max-width: 800px) {
+  .main-page .two-col { grid-template-columns: 1fr; }
+  .main-page .stats-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ================= มือถือ ================= */
+body { -webkit-text-size-adjust: 100%; }
+.login { width: min(320px, 92vw); }
+
+@media (max-width: 640px) {
+  /* iPhone จะซูมเองถ้าตัวอักษรในช่องกรอกเล็กกว่า 16px */
+  .main-page input:not([type='checkbox']):not([type='radio']),
+  .main-page select { font-size: 16px; }
+
+  /* ช่องกรอกเต็มความกว้าง เรียงต่อกันลงมา */
+  .main-page .field { flex: 1 1 100%; }
+  .main-page .field select,
+  .main-page .field input { min-width: 0; width: 100%; }
+
+  /* ปุ่มใหญ่ขึ้นให้กดง่าย */
+  .main-page .btn { padding: 12px 16px; }
+  .main-page .row > .btn { flex: 1 1 100%; }
+  .main-page .tabs { display: flex; }
+  .main-page .tabs button { flex: 1; padding: 9px 12px; }
+
+  /* ปุ่มสถานะในแถวนักเรียน: ชื่ออยู่บน ปุ่มเต็มแถวด้านล่าง */
+  .main-page .btns { width: 100%; }
+  .main-page .btns button { flex: 1 1 auto; padding: 10px 12px; font-size: 14px; }
+
+  /* ตารางเลื่อนซ้าย-ขวาในการ์ด ไม่ให้ดันหน้าจอล้น */
+  .main-page .card:has(table) { overflow-x: auto; }
+  .main-page:not(.page-report) table { min-width: 520px; }
+}
+
+/* ----- แก้ช่องเลือกถูกบีบจนมองไม่เห็นตัวอักษร ----- */
+.main-page select { min-width: 110px; max-width: 100%; flex-shrink: 0; }
+@media (max-width: 640px) {
+  .main-page .row select,
+  .main-page .card > select { flex: 1 1 130px; min-width: 120px; }
+  .main-page .row input[type='month'],
+  .main-page .row input[type='date'] { flex: 1 1 150px; min-width: 0; }
+}

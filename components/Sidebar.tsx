@@ -5,14 +5,13 @@ import { supabase } from '@/lib/supabase';
 
 const LINKS = [
   { href: '/', label: 'หน้าแรก' },
+  { href: '/checkin', label: 'เช็คชื่อ' },
+  { href: '/milk', label: 'ดื่มนม/อาหารกลางวัน' },
   { href: '/students', label: 'ฐานข้อมูลนักเรียน' },
   { href: '/student', label: 'ดูนักเรียนรายบุคคล' },
-  { href: '/checkin', label: 'เช็คชื่อ' },
-  { href: '/milk', label: 'บันทึกดื่มนม' },
   { href: '/growth', label: 'บันทึกน้ำหนัก/ส่วนสูง' },
   { href: '/report', label: 'พิมพ์รายงาน' },
 ];
-
 const CSS = `
 .topnav {
   position: sticky; top: 0; z-index: 100;
@@ -47,16 +46,21 @@ const CSS = `
   font: inherit; font-size: 14px; cursor: pointer;
 }
 .topnav-out:hover { background: #f5f3ff; }
+.topnav-link:focus, .topnav-out:focus { outline: none; }
+.topnav-link:focus-visible, .topnav-out:focus-visible { outline: 2px solid #a78bfa; outline-offset: 2px; }
 @media (max-width: 720px) {
-  .topnav { gap: 10px; padding: 8px 12px; }
+  .topnav { position: static; flex-wrap: wrap; gap: 8px 10px; padding: 8px 12px; }
   .topnav-title small { display: none; }
+  .topnav-out { margin-left: auto; padding: 6px 12px; font-size: 13px; }
+  .topnav-links { order: 3; flex: 1 1 100%; -webkit-overflow-scrolling: touch; }
+  .topnav-link { padding: 8px 14px; }
 }
 `;
 
 export default function Sidebar() {
-  const pathname = usePathname();
+  const pathname = usePathname() || '/';
   const isActive = (href: string) =>
-    href === '/' ? pathname === '/' : pathname.startsWith(href);
+    href === '/' ? pathname === '/' : pathname === href || pathname.startsWith(href + '/');
 
   return (
     <>
